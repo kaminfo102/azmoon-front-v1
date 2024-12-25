@@ -85,13 +85,14 @@ const testData = {
 ---
 
 <Layout title={testData.title}>
-  <TestProgress
+  <!-- <TestProgress
     client:load
     current={1}
     total={testData.questions.length}
     timeLeft={testData.duration * 60}
     totalTime={testData.duration * 60}
-  />
+  /> -->
+  <TestProgress client:load current={1} total={2} totalTime={600} />
   
   <div class="container py-8">
     <div class="max-w-3xl mx-auto">
