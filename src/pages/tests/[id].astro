@@ -1,0 +1,118 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { QuestionCard } from '@/components/test/question-card';
+import { TestProgress } from '@/components/test/test-progress';
+import { TestNavigation } from '@/components/test/test-navigation';
+
+export async function getStaticPaths() {
+  // در یک پروژه واقعی، این ids باید از API یا دیتابیس خوانده شوند
+  const testIds = ['javascript-basics', 'advanced-react', 'typescript']; 
+
+  return testIds.map(id => ({ params: { id } }));
+}
+
+const { id } = Astro.params;
+
+// Mock data - در پروژه واقعی از API یا دیتابیس دریافت می‌شود
+const testData = {
+    'javascript-basics': {
+        title: 'مبانی جاوااسکریپت',
+        description: 'آزمون جامع مفاهیم پایه‌ای جاوااسکریپت',
+        duration: 45,
+        questions: [
+        {
+            id: '1',
+            text: 'کدام یک از موارد زیر یک نوع داده اولیه در جاوااسکریپت نیست؟',
+            options: [
+            { id: 'a', text: 'String' },
+            { id: 'b', text: 'Boolean' },
+            { id: 'c', text: 'Array' },
+            { id: 'd', text: 'Number' }
+            ]
+        },
+        {
+            id: '2',
+            text: 'کدام متد آرایه، یک آرایه جدید ایجاد نمی‌کند؟',
+            options: [
+            { id: 'a', text: 'map()' },
+            { id: 'b', text: 'filter()' },
+            { id: 'c', text: 'push()' },
+            { id: 'd', text: 'slice()' }
+            ]
+        }
+        // سوالات بیشتر...
+        ]
+    },
+    'advanced-react': {
+        title: 'ری‌اکت پیشرفته',
+        description: 'آزمون مفاهیم پیشرفته ری‌اکت و هوک‌ها',
+        duration: 60,
+        questions: [
+            {
+                id: '1',
+                text: 'کدام هوک برای مدیریت ساید افکت‌ها استفاده می‌شود؟',
+                options: [
+                  { id: 'a', text: 'useState' },
+                  { id: 'b', text: 'useEffect' },
+                  { id: 'c', text: 'useContext' },
+                  { id: 'd', text: 'useReducer' }
+                ]
+              },
+             
+        ]
+    },
+    'typescript': {
+        title: 'تایپ‌اسکریپت',
+        description: 'آزمون جامع تایپ‌اسکریپت و سیستم تایپ',
+        duration: 30,
+        questions: [
+            {
+                id: '1',
+                text: 'کدام کلمه کلیدی برای تعریف یک رابط در تایپ‌اسکریپت استفاده می‌شود؟',
+                options: [
+                  { id: 'a', text: 'کلاس' },
+                  { id: 'b', text: 'نوع' },
+                  { id: 'c', text: 'اینترفیس' },
+                  { id: 'd', text: 'ای نام' }
+                ]
+              },
+              
+        ]
+    }
+
+}[id as string];
+
+---
+
+<Layout title={testData.title}>
+  <TestProgress
+    client:load
+    current={1}
+    total={testData.questions.length}
+    timeLeft={testData.duration * 60}
+    totalTime={testData.duration * 60}
+  />
+  
+  <div class="container py-8">
+    <div class="max-w-3xl mx-auto">
+      {testData.questions.map((question, index) => (
+        <QuestionCard
+          client:load
+          number={index + 1}
+          text={question.text}
+          options={question.options}
+          onSelect={(optionId) => {}}
+        />
+      ))}
+    </div>
+  </div>
+
+  <TestNavigation
+    client:load
+    onPrevious={() => {}}
+    onNext={() => {}}
+    onFinish={() => {}}
+    hasPrevious={false}
+    hasNext={true}
+  />
+</Layout>

@@ -1,0 +1,78 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { TestCard } from '@/components/tests/test-card';
+
+export async function getStaticPaths() {
+  return [
+    { params: { category: 'programming' } },
+    { params: { category: 'english' } },
+  ];
+}
+
+const { category } = Astro.params;
+
+const categoryData = {
+  programming: {
+    title: 'برنامه‌نویسی',
+    description: 'آزمون‌های مرتبط با برنامه‌نویسی و توسعه نرم‌افزار'
+  },
+  english: {
+    title: 'زبان انگلیسی',
+    description: 'آزمون‌های تعیین سطح و مهارت زبان انگلیسی'
+  }
+}[category as string] || {
+  title: 'دسته‌بندی نامعتبر',
+  description: 'دسته‌بندی مورد نظر یافت نشد'
+};
+
+const tests = [
+  {
+    title: 'مبانی جاوااسکریپت',
+    description: 'آزمون جامع مفاهیم پایه‌ای جاوااسکریپت',
+    duration: 45,
+    participantCount: 1234,
+    difficulty: 'متوسط',
+    isFree: true,
+    href: '/tests/javascript-basics'
+  },
+  {
+    title: 'ری‌اکت پیشرفته',
+    description: 'آزمون مفاهیم پیشرفته ری‌اکت و هوک‌ها',
+    duration: 60,
+    participantCount: 856,
+    difficulty: 'سخت',
+    isFree: false,
+    href: '/tests/advanced-react'
+  },
+  {
+    title: 'تایپ‌اسکریپت',
+    description: 'آزمون جامع تایپ‌اسکریپت و سیستم تایپ',
+    duration: 30,
+    participantCount: 567,
+    difficulty: 'آسان',
+    isFree: true,
+    href: '/tests/typescript'
+  }
+];
+---
+
+<Layout title={categoryData.title}>
+  <div class="container py-8">
+    <div class="flex flex-col gap-6">
+      <div>
+        <h1 class="text-3xl font-bold mb-2">{categoryData.title}</h1>
+        <p class="text-muted-foreground">
+          {categoryData.description}
+        </p>
+      </div>
+      <div class="grid gap-6 md:grid-cols-2">
+        {tests.map((test) => (
+          <TestCard
+            client:load
+            {...test}
+          />
+        ))}
+      </div>
+    </div>
+  </div>
+</Layout>

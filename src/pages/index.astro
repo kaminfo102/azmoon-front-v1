@@ -1,0 +1,69 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+---
+
+<Layout title="سامانه آزمون آنلاین">
+  <section class="container grid items-center gap-6 pb-8 pt-6 md:py-10">
+    <div class="flex max-w-[980px] flex-col items-start gap-2">
+      <h1 class="text-3xl font-extrabold leading-tight tracking-tighter md:text-4xl">
+        سامانه جامع آزمون آنلاین <br class="hidden sm:inline" />
+        با پشتیبانی از انواع آزمون‌ها
+      </h1>
+      <p class="max-w-[700px] text-lg text-muted-foreground">
+        با استفاده از سامانه آزمون آنلاین، می‌توانید در آزمون‌های مختلف شرکت کنید و مهارت‌های خود را بسنجید.
+      </p>
+    </div>
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <Card>
+        <CardHeader>
+          <CardTitle>برنامه‌نویسی</CardTitle>
+          <CardDescription>آزمون‌های مرتبط با برنامه‌نویسی و توسعه نرم‌افزار</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <img
+            src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500&h=300&fit=crop"
+            alt="Programming"
+            class="aspect-video w-full rounded-lg object-cover"
+          />
+        </CardContent>
+        <CardFooter>
+          <Button class="w-full">مشاهده آزمون‌ها</Button>
+        </CardFooter>
+      </Card>
+      <Card>
+        <CardHeader>
+          <CardTitle>زبان انگلیسی</CardTitle>
+          <CardDescription>آزمون‌های تعیین سطح و مهارت زبان انگلیسی</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <img
+            src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=500&h=300&fit=crop"
+            alt="English Language"
+            class="aspect-video w-full rounded-lg object-cover"
+          />
+        </CardContent>
+        <CardFooter>
+          <Button class="w-full">مشاهده آزمون‌ها</Button>
+        </CardFooter>
+      </Card>
+      <Card>
+        <CardHeader>
+          <CardTitle>ریاضی و فیزیک</CardTitle>
+          <CardDescription>آزمون‌های ریاضی و فیزیک در سطوح مختلف</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <img
+            src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=500&h=300&fit=crop"
+            alt="Math and Physics"
+            class="aspect-video w-full rounded-lg object-cover"
+          />
+        </CardContent>
+        <CardFooter>
+          <Button class="w-full">مشاهده آزمون‌ها</Button>
+        </CardFooter>
+      </Card>
+    </div>
+  </section>
+</Layout>

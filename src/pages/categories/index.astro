@@ -1,0 +1,74 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { CategoryCard } from '@/components/categories/category-card';
+
+const categories = [
+  {
+    title: 'برنامه‌نویسی',
+    description: 'آزمون‌های مرتبط با برنامه‌نویسی و توسعه نرم‌افزار',
+    imageUrl: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500&h=300&fit=crop',
+    href: '/categories/programming',
+    testCount: 24
+  },
+  {
+    title: 'زبان انگلیسی',
+    description: 'آزمون‌های تعیین سطح و مهارت زبان انگلیسی',
+    imageUrl: 'https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=500&h=300&fit=crop',
+    href: '/categories/english',
+    testCount: 18
+  },
+  {
+    title: 'ریاضی و فیزیک',
+    description: 'آزمون‌های ریاضی و فیزیک در سطوح مختلف',
+    imageUrl: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=500&h=300&fit=crop',
+    href: '/categories/math-physics',
+    testCount: 15
+  },
+  {
+    title: 'هوش مصنوعی',
+    description: 'آزمون‌های هوش مصنوعی و یادگیری ماشین',
+    imageUrl: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=500&h=300&fit=crop',
+    href: '/categories/ai',
+    testCount: 12
+  },
+  {
+    title: 'طراحی وب',
+    description: 'آزمون‌های طراحی رابط کاربری و تجربه کاربری',
+    imageUrl: 'https://images.unsplash.com/photo-1559028012-481c04fa702d?w=500&h=300&fit=crop',
+    href: '/categories/web-design',
+    testCount: 20
+  },
+  {
+    title: 'علوم داده',
+    description: 'آزمون‌های تحلیل داده و علوم داده',
+    imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=300&fit=crop',
+    href: '/categories/data-science',
+    testCount: 16
+  }
+];
+---
+
+<Layout title="دسته‌بندی‌های آزمون">
+  <div class="container py-8">
+    <div class="flex flex-col gap-6">
+      <div>
+        <h1 class="text-3xl font-bold mb-2">دسته‌بندی‌های آزمون</h1>
+        <p class="text-muted-foreground">
+          دسته‌بندی مورد نظر خود را انتخاب کنید و در آزمون‌های مختلف شرکت کنید.
+        </p>
+      </div>
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {categories.map((category) => (
+          <CategoryCard
+            client:load
+            title={category.title}
+            description={category.description}
+            imageUrl={category.imageUrl}
+            href={category.href}
+            testCount={category.testCount}
+          />
+        ))}
+      </div>
+    </div>
+  </div>
+</Layout>
